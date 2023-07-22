@@ -28,13 +28,13 @@ use lazy_static::lazy_static;
 use models::{entry, InputEvent, Style, UserAction};
 use multimap::MultiMap;
 use prelude::*;
-use state::Storage;
+use state::InitCell;
 use tokio::runtime;
 
 lazy_static! {
-	pub static ref STYLES: Storage<Styles> = Storage::new();
-	pub static ref VARIABLES: Storage<Variables> = Storage::new();
-	pub static ref BINDINGS: Storage<MultiMap<InputEvent, UserAction>> = Storage::new();
+	pub static ref STYLES: InitCell<Styles> = InitCell::new();
+	pub static ref VARIABLES: InitCell<Variables> = InitCell::new();
+	pub static ref BINDINGS: InitCell<MultiMap<InputEvent, UserAction>> = InitCell::new();
 }
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
