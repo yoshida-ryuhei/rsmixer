@@ -61,7 +61,7 @@ pub struct ConfigColor {
 
 impl RsMixerConfig {
 	pub fn load() -> Result<Self> {
-		let config: RsMixerConfig = confy::load("rsmixer")?;
+		let config: RsMixerConfig = confy::load("rsmixer", None)?;
 		Ok(config)
 	}
 
@@ -115,7 +115,7 @@ impl RsMixerConfig {
 
 		self.version = Some(String::from(VERSION));
 
-		confy::store("rsmixer", self.clone())?;
+		confy::store("rsmixer", None, self.clone())?;
 
 		Ok((styles, bindings, Variables::new(self)))
 	}
