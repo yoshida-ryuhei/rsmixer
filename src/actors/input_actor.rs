@@ -56,6 +56,7 @@ pub async fn start(rx: LockedReceiver, ctx: Ctx) -> Result<()> {
 					Event::Resize(_, _) => {
 						ctx.send_to("event_loop", ResizeScreen::new());
 					}
+					_ => todo!(),
 				};
 			}
 			ev = recv_event => {
