@@ -1,5 +1,6 @@
 mod actions;
 mod colors;
+use crossterm::style::Stylize;
 mod default;
 mod errors;
 pub mod keys_mouse;
@@ -77,7 +78,7 @@ impl RsMixerConfig {
 
 			if let Some(q) = &v.fg {
 				if let Some(color) = colors::str_to_color(q) {
-					c = c.foreground(color);
+					c.foreground_color = Some(color);
 				} else {
 					return Err(ConfigError::InvalidColor(q.clone()))
 						.context("while parsing config file");
@@ -85,7 +86,7 @@ impl RsMixerConfig {
 			}
 			if let Some(q) = &v.bg {
 				if let Some(color) = colors::str_to_color(q) {
-					c = c.background(color);
+					c.background_color = Some(color);
 				} else {
 					return Err(ConfigError::InvalidColor(q.clone()))
 						.context("while parsing config file");
