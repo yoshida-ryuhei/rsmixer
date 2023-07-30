@@ -88,9 +88,7 @@ pub struct LockedActor(Arc<RwLock<Actor>>);
 
 impl LockedActor {
 	pub fn new(actor: Actor) -> Self {
-		Self {
-			0: Arc::new(RwLock::new(actor)),
-		}
+		Self(Arc::new(RwLock::new(actor)))
 	}
 	#[allow(dead_code)]
 	pub async fn read(&self) -> RwLockReadGuard<'_, Actor> {

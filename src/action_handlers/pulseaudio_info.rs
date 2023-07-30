@@ -8,7 +8,7 @@ pub fn handle(msg: &EntryUpdate, state: &mut RSState) {
 			state.update_entry(ident, entry.deref().to_owned());
 		}
 		EntryUpdate::EntryRemoved(ident) => {
-			state.remove_entry(&ident);
+			state.remove_entry(ident);
 		}
 		EntryUpdate::PeakVolumeUpdate(ident, peak) => {
 			state.update_peak_volume(ident, peak);

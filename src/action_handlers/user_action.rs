@@ -18,7 +18,7 @@ pub fn handle(msg: &UserAction, state: &mut RSState, ctx: &Ctx) {
 			state.move_right();
 		}
 		UserAction::SetSelected(index) => {
-			state.set_selected(*index as usize);
+			state.set_selected(*index);
 		}
 		UserAction::ChangePage(page) => {
 			state.change_page(*page);

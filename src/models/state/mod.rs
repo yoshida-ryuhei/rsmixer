@@ -150,14 +150,14 @@ impl RSState {
 				let l = self.page_entries.len() - 1;
 				let selected = self.page_entries.selected() - 1;
 
-				let mut j = (selected + how_much as usize) % l;
+				let mut j = (selected + how_much) % l;
 
 				if j >= selected {
 					j += 1;
 				}
 
 				let entry_ident = self.page_entries.get_selected().unwrap();
-				let new_parent = self.page_entries.get(j as usize).unwrap();
+				let new_parent = self.page_entries.get(j).unwrap();
 				self.change_ui_mode(UIMode::MoveEntry(entry_ident, new_parent));
 
 				page_entries::update(self);
@@ -387,7 +387,7 @@ impl RSState {
 			}
 		};
 
-		let answer = self.context_menu.resolve(selected, &self.ctx());
+		let answer = self.context_menu.resolve(selected, self.ctx());
 
 		match answer {
 			ContextMenuEffect::None => {

@@ -127,7 +127,7 @@ impl RsMixerConfig {
 		for (k, cs) in self.bindings.iter_vecs() {
 			for c in cs {
 				bindings.insert(
-					keys_mouse::try_string_to_event(&k)?,
+					keys_mouse::try_string_to_event(k)?,
 					UserAction::try_from(c.clone())?,
 				);
 			}
@@ -163,7 +163,7 @@ impl RsMixerConfig {
 		for (k, cs) in self.bindings.iter_vecs() {
 			for c in cs {
 				parsed.insert(
-					keys_mouse::try_string_to_event(&k)?,
+					keys_mouse::try_string_to_event(k)?,
 					(UserAction::try_from(c.clone())?, k.clone()),
 				);
 			}
@@ -171,12 +171,12 @@ impl RsMixerConfig {
 
 		if parsed
 			.iter()
-			.find(|(_, v)| (**v).0 == UserAction::Confirm)
+			.find(|(_, v)| (v).0 == UserAction::Confirm)
 			.is_none()
 		{
 			if let Some((_, (_, k))) = parsed
 				.iter()
-				.find(|(_, v)| (**v).0 == UserAction::OpenContextMenu(None))
+				.find(|(_, v)| (v).0 == UserAction::OpenContextMenu(None))
 			{
 				self.bindings
 					.insert(k.clone(), UserAction::Confirm.to_string());
