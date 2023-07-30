@@ -22,9 +22,7 @@ pub struct LockedActorStatus(Arc<RwLock<ActorStatus>>);
 
 impl LockedActorStatus {
 	pub fn new(status: ActorStatus) -> Self {
-		Self {
-			0: Arc::new(RwLock::new(status)),
-		}
+		Self(Arc::new(RwLock::new(status)))
 	}
 	pub async fn set(&self, status: ActorStatus) {
 		let mut stat = self.0.write().await;

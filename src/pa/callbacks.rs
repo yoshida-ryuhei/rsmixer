@@ -173,7 +173,7 @@ pub fn on_card_info(res: ListResult<&CardInfo>) {
 						Some(s) => s.to_string(),
 						None => n.to_string(),
 					},
-					#[cfg(any(feature = "pa_v13"))]
+					#[cfg(feature = "pa_v13")]
 					available: p.available,
 				})
 			})

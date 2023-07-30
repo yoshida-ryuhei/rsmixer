@@ -115,7 +115,7 @@ impl Widget for CardEntry {
 		buffer.string(
 			self.area.x,
 			self.area.y,
-			(&self.name[0..name_len]).to_string(),
+			self.name[0..name_len].to_string(),
 			name_style,
 		);
 
@@ -128,7 +128,7 @@ impl Widget for CardEntry {
 			buffer.string(
 				self.area.x + self.area.width - profile_len as u16,
 				self.area.y,
-				(&self.profiles[index].description[0..profile_len]).to_string(),
+				self.profiles[index].description[0..profile_len].to_string(),
 				style,
 			);
 		}

@@ -1,6 +1,7 @@
+use linked_hash_map::LinkedHashMap;
+
 use super::{ConfigColor, RsMixerConfig};
 use crate::{multimap::MultiMap, VERSION};
-use linked_hash_map::LinkedHashMap;
 
 impl std::default::Default for RsMixerConfig {
 	fn default() -> Self {

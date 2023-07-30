@@ -48,7 +48,7 @@ impl Pixels {
 
 impl From<Vec<Pixel>> for Pixels {
 	fn from(s: Vec<Pixel>) -> Self {
-		Self { 0: s }
+		Self(s)
 	}
 }
 impl From<Pixels> for Vec<Pixel> {

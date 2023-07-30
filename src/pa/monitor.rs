@@ -80,8 +80,8 @@ impl Monitors {
 		}
 		let (sx, rx) = cb_channel::unbounded();
 		if let Ok(stream) = create(
-			&mainloop,
-			&context,
+			mainloop,
+			context,
 			&pulse::sample::Spec {
 				format: pulse::sample::Format::FLOAT32NE,
 				channels: 1,
@@ -105,7 +105,7 @@ impl Monitors {
 	}
 
 	fn error(&mut self, ident: &EntryIdentifier) {
-		let count = match self.errors.get(&ident) {
+		let count = match self.errors.get(ident) {
 			Some(x) => *x,
 			None => 0,
 		};
@@ -146,7 +146,7 @@ fn create(
 	// Stream state change callback
 	{
 		debug!("[PADataInterface] Registering stream state change callback");
-		let ml_ref = Rc::clone(&p_mainloop);
+		let ml_ref = Rc::clone(p_mainloop);
 		let stream_ref = Rc::downgrade(&stream);
 		stream
 			.borrow_mut()
@@ -214,7 +214,7 @@ fn create(
 
 	{
 		info!("[PADataInterface] Registering stream read callback");
-		let ml_ref = Rc::clone(&p_mainloop);
+		let ml_ref = Rc::clone(p_mainloop);
 		let stream_ref = Rc::downgrade(&stream);
 		stream.borrow_mut().set_read_callback(Some(Box::new(move |_size: usize| {
             let remove_failed = || {
@@ -250,7 +250,7 @@ fn create(
                                     let data_slice = slice_to_4_bytes(&data[c * 4 .. (c + 1) * 4]);
                                     peak += f32::from_ne_bytes(data_slice).abs();
                                 }
-                                peak = peak / count as f32;
+                                peak /=  count as f32;
 
                                 if (*ACTIONS_SX).get().send(EntryUpdate::PeakVolumeUpdate(ident, peak)).is_err() {
                                     disconnect_stream();

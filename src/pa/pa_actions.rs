@@ -7,25 +7,25 @@ pub fn handle_command(
 ) -> Option<()> {
 	match cmd {
 		PulseAudioAction::RequestPulseAudioState => {
-			callbacks::request_current_state(Rc::clone(&context), info_sx.clone()).unwrap();
+			callbacks::request_current_state(Rc::clone(context), info_sx.clone()).unwrap();
 		}
 		PulseAudioAction::MuteEntry(ident, mute) => {
-			set_mute(ident, mute, &context);
+			set_mute(ident, mute, context);
 		}
 		PulseAudioAction::MoveEntryToParent(ident, parent) => {
-			move_entry_to_parent(ident, parent, &context, info_sx.clone());
+			move_entry_to_parent(ident, parent, context, info_sx.clone());
 		}
 		PulseAudioAction::ChangeCardProfile(ident, profile) => {
-			change_card_profile(ident, profile, &context);
+			change_card_profile(ident, profile, context);
 		}
 		PulseAudioAction::SetVolume(ident, vol) => {
-			set_volume(ident, vol, &context);
+			set_volume(ident, vol, context);
 		}
 		PulseAudioAction::SetSuspend(ident, suspend) => {
-			set_suspend(ident, suspend, &context);
+			set_suspend(ident, suspend, context);
 		}
 		PulseAudioAction::KillEntry(ident) => {
-			kill_entry(ident, &context);
+			kill_entry(ident, context);
 		}
 		PulseAudioAction::Shutdown => {
 			//@TODO disconnect monitors

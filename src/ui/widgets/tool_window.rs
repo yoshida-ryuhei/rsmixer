@@ -32,10 +32,7 @@ impl Widget for ToolWindowWidget {
 	fn resize(&mut self, mut area: Rect) -> Result<()> {
 		let target_h = min(self.inner_height + self.padding.1 * 2, area.height);
 
-		let target_w = min(
-			max(40, self.inner_width + self.padding.0 * 2) as u16,
-			area.width,
-		);
+		let target_w = min(max(40, self.inner_width + self.padding.0 * 2), area.width);
 
 		if area.width > target_w {
 			area.x += (area.width - target_w) / 2;
