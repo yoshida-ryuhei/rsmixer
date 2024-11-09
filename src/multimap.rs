@@ -2,8 +2,8 @@ use std::hash::Hash;
 
 use linked_hash_map::LinkedHashMap;
 use serde::{
-	private::de::{Content, ContentRefDeserializer},
 	Deserialize, Deserializer, Serialize, Serializer,
+	__private::de::{Content, ContentRefDeserializer},
 };
 
 #[derive(Clone)]

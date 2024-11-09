@@ -1,6 +1,7 @@
-use super::{ConfigColor, RsMixerConfig};
 use linked_hash_map::LinkedHashMap;
-use crate::{VERSION, multimap::MultiMap};
+
+use super::{ConfigColor, RsMixerConfig};
+use crate::{multimap::MultiMap, VERSION};
 
 impl std::default::Default for RsMixerConfig {
 	fn default() -> Self {
@@ -48,7 +49,7 @@ impl std::default::Default for RsMixerConfig {
 			"normal".to_string(),
 			ConfigColor {
 				fg: Some("white".to_string()),
-                bg: None,
+				bg: None,
 				attributes: None,
 			},
 		);
@@ -56,7 +57,7 @@ impl std::default::Default for RsMixerConfig {
 			"bold".to_string(),
 			ConfigColor {
 				fg: Some("white".to_string()),
-                bg: None,
+				bg: None,
 				attributes: Some(vec!["bold".to_string()]),
 			},
 		);
@@ -72,7 +73,7 @@ impl std::default::Default for RsMixerConfig {
 			"muted".to_string(),
 			ConfigColor {
 				fg: Some("grey".to_string()),
-                bg: None,
+				bg: None,
 				attributes: None,
 			},
 		);
@@ -80,7 +81,7 @@ impl std::default::Default for RsMixerConfig {
 			"red".to_string(),
 			ConfigColor {
 				fg: Some("red".to_string()),
-                bg: None,
+				bg: None,
 				attributes: None,
 			},
 		);
@@ -88,7 +89,7 @@ impl std::default::Default for RsMixerConfig {
 			"orange".to_string(),
 			ConfigColor {
 				fg: Some("yellow".to_string()),
-                bg: None,
+				bg: None,
 				attributes: None,
 			},
 		);
@@ -96,7 +97,7 @@ impl std::default::Default for RsMixerConfig {
 			"green".to_string(),
 			ConfigColor {
 				fg: Some("green".to_string()),
-                bg: None,
+				bg: None,
 				attributes: None,
 			},
 		);
