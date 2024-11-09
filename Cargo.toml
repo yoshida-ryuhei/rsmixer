@@ -28,7 +28,7 @@ lazy_static = "1.4.0"
 unicode-width = "0.1.10"
 state = { version = "0.6.0", features = ["tls"] }
 crossterm = { version = "0.26.1", features = ["serde", "event-stream"] }
-crossbeam-channel = "0.4.4"
+crossbeam-channel = "0.5.0"
 
 # error handling
 thiserror = "1.0.44"
