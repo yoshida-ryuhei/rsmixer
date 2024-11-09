@@ -35,7 +35,7 @@ thiserror = "1.0.44"
 
 # config and cli options
 serde = { version = "=1.0.214", features = ["derive"] }
-toml = "0.7.6"
+toml = "0.8.0"
 confy = "0.6.0"
 gumdrop = "0.8.1"
 
