@@ -5,11 +5,10 @@ use tokio::sync::RwLock;
 use tokio_stream::wrappers::UnboundedReceiverStream;
 
 pub use super::{
-	actor::{Actor, ActorItem, ActorStatus, BoxedResultFuture, ContinousActor, EventfulActor},
+	actor::{Actor, ActorItem, BoxedResultFuture, ContinousActor, EventfulActor},
 	context::Ctx,
 	messages::{BoxedMessage, Shutdown},
-	retry_strategy::{PinnedClosure, RetryStrategy},
-	worker::Worker,
+	retry_strategy::PinnedClosure,
 };
 
 pub type LockedReceiver = Arc<RwLock<UnboundedReceiverStream<BoxedMessage>>>;

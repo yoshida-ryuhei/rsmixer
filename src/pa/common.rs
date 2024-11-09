@@ -2,12 +2,12 @@ pub use std::{cell::RefCell, collections::HashMap, rc::Rc};
 
 pub use pulse::{
 	context::{subscribe::Facility, Context as PAContext},
-	mainloop::{api::Mainloop as MainloopTrait, threaded::Mainloop},
+	mainloop::threaded::Mainloop,
 	stream::Stream,
 };
 pub use tokio::sync::mpsc;
 
-pub use super::{errors::PAError, monitor::Monitors, PAInternal, SPEC};
+pub use super::{errors::PAError, monitor::Monitors, PAInternal};
 pub use crate::{
 	entry::{EntryIdentifier, EntryType},
 	models::{EntryUpdate, PulseAudioAction},
