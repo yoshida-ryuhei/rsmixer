@@ -57,6 +57,7 @@ impl From<Pixels> for Vec<Pixel> {
 	}
 }
 
+#[derive(Default)]
 pub struct Buffer {
 	pub width: u16,
 	pub height: u16,
@@ -65,17 +66,6 @@ pub struct Buffer {
 	pub styles: HashMap<Style, ContentStyle>,
 }
 
-impl Default for Buffer {
-	fn default() -> Self {
-		Self {
-			width: 0,
-			height: 0,
-			pixels: Vec::new(),
-			changes: BTreeMap::new(),
-			styles: HashMap::new(),
-		}
-	}
-}
 
 impl Buffer {
 	pub fn set_styles(&mut self, styles: HashMap<Style, ContentStyle>) {

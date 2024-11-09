@@ -2,13 +2,9 @@ use std::collections::BTreeMap;
 
 use super::{CardEntry, Entry, EntryIdentifier, EntryType, PlayEntry};
 
+#[derive(Default)]
 pub struct Entries(BTreeMap<EntryIdentifier, Entry>);
 
-impl Default for Entries {
-	fn default() -> Self {
-		Self(BTreeMap::new())
-	}
-}
 
 impl Entries {
 	pub fn iter_type<'a>(

@@ -154,13 +154,9 @@ pub fn request_info(
 }
 pub fn on_card_info(res: ListResult<&CardInfo>) {
 	if let ListResult::Item(i) = res {
-		let n = match i
+		let n = i
 			.proplist
-			.get_str(pulse::proplist::properties::DEVICE_DESCRIPTION)
-		{
-			Some(s) => s,
-			None => String::from(""),
-		};
+			.get_str(pulse::proplist::properties::DEVICE_DESCRIPTION).unwrap_or_default();
 		let profiles: Vec<CardProfile> = i
 			.profiles
 			.iter()
@@ -309,13 +305,9 @@ pub fn on_source_output_info(
 	move |res: ListResult<&SourceOutputInfo>| {
 		if let ListResult::Item(i) = res {
 			debug!("[PADataInterface] Update {} source output info", i.index);
-			let n = match i
+			let n = i
 				.proplist
-				.get_str(pulse::proplist::properties::APPLICATION_NAME)
-			{
-				Some(s) => s,
-				None => String::from(""),
-			};
+				.get_str(pulse::proplist::properties::APPLICATION_NAME).unwrap_or_default();
 			if n == "RsMixerContext" {
 				return;
 			}

@@ -1,6 +1,8 @@
 #[derive(Clone, Copy, PartialEq, Debug, Hash)]
+#[derive(Default)]
 pub enum Style {
-	Normal,
+	#[default]
+ Normal,
 	Muted,
 	Bold,
 	Inverted,
@@ -25,8 +27,3 @@ impl From<&String> for Style {
 	}
 }
 
-impl Default for Style {
-	fn default() -> Self {
-		Style::Normal
-	}
-}

@@ -10,19 +10,12 @@ pub struct Monitor {
 	exit_sender: cb_channel::Sender<u32>,
 }
 
+#[derive(Default)]
 pub struct Monitors {
 	monitors: HashMap<EntryIdentifier, Monitor>,
 	errors: HashMap<EntryIdentifier, usize>,
 }
 
-impl Default for Monitors {
-	fn default() -> Self {
-		Self {
-			monitors: HashMap::new(),
-			errors: HashMap::new(),
-		}
-	}
-}
 
 impl Monitors {
 	pub fn filter(
@@ -45,7 +38,7 @@ impl Monitors {
 				_ => {}
 			};
 
-			if targets.get(ident) == None {
+			if targets.get(ident).is_none() {
 				let _ = monitor.exit_sender.send(0);
 			}
 

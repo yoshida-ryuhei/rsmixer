@@ -43,9 +43,7 @@ pub struct MultiMap<K: Eq + Hash, V>(LinkedHashMap<K, Element<V>>);
 
 impl<K: Eq + Hash, V> MultiMap<K, V> {
 	pub fn new() -> Self {
-		Self {
-			0: LinkedHashMap::new(),
-		}
+		Self(LinkedHashMap::new())
 	}
 
 	pub fn insert(&mut self, k: K, v: V) {

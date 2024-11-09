@@ -6,17 +6,11 @@ use crate::{
 };
 
 #[derive(Clone)]
+#[derive(Default)]
 pub struct WarningTextWidget {
 	pub text: String,
 }
 
-impl Default for WarningTextWidget {
-	fn default() -> Self {
-		Self {
-			text: String::from(""),
-		}
-	}
-}
 
 impl Widget for WarningTextWidget {
 	fn resize(&mut self, _area: Rect) -> Result<()> {

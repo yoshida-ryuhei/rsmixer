@@ -52,7 +52,7 @@ impl PageEntries {
 			// check if any page entry changed identifier or level
 			vs.iter().enumerate().find(|&(i, &e)| {
 				e != self.get(i).unwrap() || calc_lvl(parent_type, &vs, i) != self.lvls[i]
-			}) != None
+			}).is_some()
 		} else {
 			true
 		};

@@ -106,7 +106,7 @@ impl PageType {
 		Box::new(
 			entries
 				.iter_type(parent)
-				.map(move |(ident, entry)| {
+				.flat_map(move |(ident, entry)| {
 					std::iter::once((ident, entry)).chain(entries.iter_type(child).filter(
 						move |(_, e)| {
 							e.parent() == Some(ident.index)
@@ -118,8 +118,7 @@ impl PageType {
 								}
 						},
 					))
-				})
-				.flatten(),
+				}),
 		)
 	}
 }
