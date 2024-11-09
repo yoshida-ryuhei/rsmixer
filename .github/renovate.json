@@ -2,5 +2,22 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "timezone": "Asia/Tokyo",
+  "assignees": [
+    "yoshida-ryuhei"
+  ],
+  "labels": [
+    "renovate-update"
+  ],
+  "schedule": ["after 7pm"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "labels": ["renovate/auto_merge"],
+      "schedule": ["after 7pm"],
+      "automerge": true,
+      "platformAutomerge": true
+    }
   ]
 }
