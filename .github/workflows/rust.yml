@@ -23,4 +23,6 @@ jobs:
       - name: Check formatting
         run: cargo fmt --verbose
       - name: Check clippy
-        run: cargo clippy --verbose
+        run: |
+          cargo clippy --verbose
+          # cargo clippy -- --deny "warnings"

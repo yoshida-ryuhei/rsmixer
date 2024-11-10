@@ -70,7 +70,7 @@ pub async fn make_changes(state: &mut RSState) -> Result<()> {
 		let indexes_to_redraw = state
 			.page_entries
 			.visible_range(state.ui.entries_area.height)
-			.filter(|i| !only_affected || state.redraw.affected_entries.get(i).is_some())
+			.filter(|i| !only_affected || state.redraw.affected_entries.contains(i))
 			.collect::<Vec<_>>();
 
 		for i in &indexes_to_redraw {

@@ -5,17 +5,9 @@ use crate::{
 	ui::{Buffer, Rect},
 };
 
-#[derive(Clone)]
+#[derive(Clone, Default)]
 pub struct WarningTextWidget {
 	pub text: String,
-}
-
-impl Default for WarningTextWidget {
-	fn default() -> Self {
-		Self {
-			text: String::from(""),
-		}
-	}
 }
 
 impl Widget for WarningTextWidget {

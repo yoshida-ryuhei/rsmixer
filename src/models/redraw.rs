@@ -1,23 +1,12 @@
 use std::collections::HashSet;
 
-#[derive(PartialEq, Debug, Clone)]
+#[derive(PartialEq, Debug, Clone, Default)]
 pub struct Redraw {
 	pub entries: bool,
 	pub peak_volume: Option<usize>,
 	pub resize: bool,
 	pub affected_entries: HashSet<usize>,
 	pub context_menu: bool,
-}
-impl Default for Redraw {
-	fn default() -> Self {
-		Self {
-			entries: false,
-			peak_volume: None,
-			resize: false,
-			affected_entries: HashSet::new(),
-			context_menu: false,
-		}
-	}
 }
 
 impl Redraw {
