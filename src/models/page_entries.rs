@@ -50,9 +50,12 @@ impl PageEntries {
 	pub fn set(&mut self, vs: Vec<EntryIdentifier>, parent_type: EntryType) -> bool {
 		let ret = if vs.len() == self.len() {
 			// check if any page entry changed identifier or level
-			vs.iter().enumerate().find(|&(i, &e)| {
-				e != self.get(i).unwrap() || calc_lvl(parent_type, &vs, i) != self.lvls[i]
-			}).is_some()
+			vs.iter()
+				.enumerate()
+				.find(|&(i, &e)| {
+					e != self.get(i).unwrap() || calc_lvl(parent_type, &vs, i) != self.lvls[i]
+				})
+				.is_some()
 		} else {
 			true
 		};

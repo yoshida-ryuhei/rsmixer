@@ -5,7 +5,6 @@ use super::{CardEntry, Entry, EntryIdentifier, EntryType, PlayEntry};
 #[derive(Default)]
 pub struct Entries(BTreeMap<EntryIdentifier, Entry>);
 
-
 impl Entries {
 	pub fn iter_type<'a>(
 		&'a self,

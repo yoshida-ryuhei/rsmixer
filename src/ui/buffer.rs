@@ -66,7 +66,6 @@ pub struct Buffer {
 	pub styles: HashMap<Style, ContentStyle>,
 }
 
-
 impl Buffer {
 	pub fn set_styles(&mut self, styles: HashMap<Style, ContentStyle>) {
 		self.styles = styles;

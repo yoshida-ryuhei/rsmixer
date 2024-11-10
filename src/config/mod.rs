@@ -169,9 +169,7 @@ impl RsMixerConfig {
 			}
 		}
 
-		if !parsed
-			.iter().any(|(_, v)| (v).0 == UserAction::Confirm)
-		{
+		if !parsed.iter().any(|(_, v)| (v).0 == UserAction::Confirm) {
 			if let Some((_, (_, k))) = parsed
 				.iter()
 				.find(|(_, v)| (v).0 == UserAction::OpenContextMenu(None))

@@ -5,12 +5,10 @@ use crate::{
 	ui::{Buffer, Rect},
 };
 
-#[derive(Clone)]
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct WarningTextWidget {
 	pub text: String,
 }
-
 
 impl Widget for WarningTextWidget {
 	fn resize(&mut self, _area: Rect) -> Result<()> {

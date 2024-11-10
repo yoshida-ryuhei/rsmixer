@@ -16,7 +16,6 @@ pub struct Monitors {
 	errors: HashMap<EntryIdentifier, usize>,
 }
 
-
 impl Monitors {
 	pub fn filter(
 		&mut self,
@@ -46,7 +45,7 @@ impl Monitors {
 		});
 
 		targets.iter().for_each(|(ident, monitor_src)| {
-			if self.monitors.get(ident).is_none() {
+			if !self.monitors.contains_key(ident) {
 				self.create_monitor(mainloop, context, *ident, *monitor_src);
 			}
 		});
@@ -172,9 +171,9 @@ fn create(
 	match stream.borrow_mut().connect_record(
 		s,
 		Some(&pulse::def::BufferAttr {
-			maxlength: std::u32::MAX,
-			tlength: std::u32::MAX,
-			prebuf: std::u32::MAX,
+			maxlength: u32::MAX,
+			tlength: u32::MAX,
+			prebuf: u32::MAX,
 			minreq: 0,
 			fragsize: (*VARIABLES).get().pa_frag_size,
 		}),

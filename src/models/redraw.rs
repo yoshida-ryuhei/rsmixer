@@ -1,7 +1,6 @@
 use std::collections::HashSet;
 
-#[derive(PartialEq, Debug, Clone)]
-#[derive(Default)]
+#[derive(PartialEq, Debug, Clone, Default)]
 pub struct Redraw {
 	pub entries: bool,
 	pub peak_volume: Option<usize>,
