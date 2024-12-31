@@ -47,6 +47,6 @@ futures = "0.3.28"
 # pulseaudio
 libpulse-binding = { version = "2.28.1", default-features = false }
 semver = "1.0.18"
-itertools = "0.13.0"
+itertools = "0.14.0"
 async-trait = "0.1.72"
 anyhow = "1.0.72"
