@@ -96,8 +96,8 @@ impl Display for InputEvent {
 				KeyCode::Pause => "Pause".to_string(),
 				KeyCode::Menu => "Menu".to_string(),
 				KeyCode::KeypadBegin => "KeypadBegin".to_string(),
-				KeyCode::F(i) => format!("F{}", i),
-				KeyCode::Char(c) => format!("{}", c),
+				KeyCode::F(i) => format!("F{i}"),
+				KeyCode::Char(c) => format!("{c}"),
 				KeyCode::Media(_) => "Media".to_string(),
 				KeyCode::Modifier(_) => "Modifier".to_string(),
 			},
@@ -111,6 +111,6 @@ impl Display for InputEvent {
 			},
 		};
 
-		write!(f, "{}", last)
+		write!(f, "{last}")
 	}
 }

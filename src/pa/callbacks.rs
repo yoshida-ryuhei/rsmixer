@@ -38,7 +38,7 @@ pub fn subscribe(
 			if let Some(facility) = facility {
 				match facility {
 					Facility::Server | Facility::Client => {
-						log::error!("{:?} {:?}", facility, operation);
+						log::error!("{facility:?} {operation:?}");
 						return;
 					}
 					_ => {}

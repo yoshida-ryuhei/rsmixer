@@ -240,7 +240,7 @@ impl Widget for PlayEntry {
 			}
 		}
 
-		let vol_perc = format!("  {}", vol_percent);
+		let vol_perc = format!("  {vol_percent}");
 		let vol_perc = String::from(&vol_perc[vol_perc.len() - 3..vol_perc.len()]);
 		let vol_db = self.volume.avg().print_db();
 

@@ -35,9 +35,9 @@ impl HelpLine {
 		self.key_events.iter().for_each(|ke| {
 			if cur.len() + ke.len() + 1 > w as usize {
 				v.push(cur.clone());
-				cur = format!("{} ", ke);
+				cur = format!("{ke} ");
 			} else {
-				cur = format!("{}{} ", cur, ke);
+				cur = format!("{cur}{ke} ");
 			}
 		});
 
@@ -90,7 +90,7 @@ pub fn generate() -> Vec<HelpLine> {
 
 	for vd in volume_deltas {
 		categories.push((
-			format!("Change volume by {}", vd),
+			format!("Change volume by {vd}"),
 			vec![
 				ActionMatcher::Concrete(UserAction::RequstChangeVolume(vd, None)),
 				ActionMatcher::Concrete(UserAction::RequstChangeVolume(-vd, None)),

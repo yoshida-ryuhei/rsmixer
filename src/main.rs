@@ -82,7 +82,7 @@ fn main() -> Result<()> {
 		debug!("Tokio runtime started");
 
 		if let Err(e) = run().await {
-			println!("{:#?}", e);
+			println!("{e:#?}");
 		}
 	});
 

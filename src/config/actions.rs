@@ -17,13 +17,13 @@ impl ToString for UserAction {
 			UserAction::ShowHelp => "help".to_string(),
 			UserAction::RequstChangeVolume(num, _) => {
 				if *num < 0 {
-					format!("lower_volume({})", num)
+					format!("lower_volume({num})")
 				} else {
-					format!("raise_volume({})", num)
+					format!("raise_volume({num})")
 				}
 			}
-			UserAction::MoveUp(num) => format!("up({})", num),
-			UserAction::MoveDown(num) => format!("down({})", num),
+			UserAction::MoveUp(num) => format!("up({num})"),
+			UserAction::MoveDown(num) => format!("down({num})"),
 			UserAction::MoveLeft => "left".to_string(),
 			UserAction::MoveRight => "right".to_string(),
 			UserAction::CyclePages(x) => {

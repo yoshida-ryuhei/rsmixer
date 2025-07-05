@@ -4,8 +4,8 @@ use crossterm::event::{KeyCode, KeyEvent};
 use crate::models::{RSState, UserAction};
 
 pub fn handle(actions: &mut Vec<UserAction>, input: &KeyEvent, state: &RSState) -> Result<()> {
-	let confirm = actions.iter().any(|a| *a == UserAction::Confirm);
-	let close_context_menu = actions.iter().any(|a| *a == UserAction::CloseContextMenu);
+	let confirm = actions.contains(&UserAction::Confirm);
+	let close_context_menu = actions.contains(&UserAction::CloseContextMenu);
 
 	if confirm {
 		actions.clear();
