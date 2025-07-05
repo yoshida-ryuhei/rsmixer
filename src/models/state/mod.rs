@@ -76,7 +76,7 @@ impl RSState {
 		self.redraw.resize = true;
 	}
 	pub fn change_ui_mode(&mut self, mode: UIMode) {
-		log::debug!("changing ui mode to {:?}", mode);
+		log::debug!("changing ui mode to {mode:?}");
 		self.ui_mode = mode;
 		self.redraw.resize = true;
 	}

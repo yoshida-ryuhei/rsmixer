@@ -52,7 +52,7 @@ pub async fn make_changes(state: &mut RSState) -> Result<()> {
 	}
 
 	if let UIMode::RetryIn(time) = state.ui_mode {
-		state.warning_text.text = format!("PulseAudio disconnected. Retrying in {}...", time);
+		state.warning_text.text = format!("PulseAudio disconnected. Retrying in {time}...");
 		state.warning_text.render(&mut state.ui.buffer)?;
 
 		return Ok(());
