@@ -207,10 +207,7 @@ pub fn on_sink_info(
 				Some(name) => name.to_string(),
 				None => String::new(),
 			};
-			let display_info = i
-				.proplist
-				.get_str("alsa.name")
-				.unwrap_or_default();
+			let display_info = i.proplist.get_str("alsa.name").unwrap_or_default();
 			let ident = EntryIdentifier::new(EntryType::Sink, i.index);
 			let entry = Entry::new_play_entry(
 				EntryType::Sink,

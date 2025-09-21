@@ -1,6 +1,6 @@
 use std::{
 	collections::{BTreeMap, HashMap},
-	io::{Write,Result},
+	io::{Result, Write},
 	iter::Iterator,
 };
 
@@ -77,7 +77,7 @@ impl Buffer {
 		self.pixels = (0..width * height).map(|_| Pixel::default()).collect();
 	}
 
-	pub fn draw_changes<W: Write>(&mut self, stdout: &mut W) -> Result<()>{
+	pub fn draw_changes<W: Write>(&mut self, stdout: &mut W) -> Result<()> {
 		let mut last_style = None;
 		let mut last_coord = None;
 		let mut text = "".to_string();

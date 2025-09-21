@@ -120,9 +120,7 @@ fn generate_eventful_actor_loop(
 				_ => Ok(()),
 			};
 
-			if result.is_err() {
-				return result;
-			}
+			result.as_ref()?;
 		}
 		Ok(())
 	})
