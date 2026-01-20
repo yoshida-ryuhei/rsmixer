@@ -1,10 +1,6 @@
-use std::hash::Hash;
-
 use linked_hash_map::LinkedHashMap;
-use serde::{
-	Deserialize, Deserializer, Serialize, Serializer,
-	__private::de::{Content, ContentRefDeserializer},
-};
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use std::hash::Hash;
 
 #[derive(Clone)]
 enum Element<T> {
@@ -28,12 +24,19 @@ impl<'de, T: Deserialize<'de>> Deserialize<'de> for Element<T> {
 	where
 		D: Deserializer<'de>,
 	{
-		let content = Content::deserialize(deserializer)?;
-		if let Ok(x) = T::deserialize(ContentRefDeserializer::<D::Error>::new(&content)) {
-			Ok(Element::Single(vec![x]))
-		} else {
-			let xs = Vec::<T>::deserialize(ContentRefDeserializer::<D::Error>::new(&content))?;
-			Ok(Element::Many(xs))
+		// Use an untagged enum approach to try deserializing as T or Vec<T>.
+		// Since we can't reuse the deserializer, we use a helper enum with #[serde(untagged)].
+		#[derive(Deserialize)]
+		#[serde(untagged)]
+		enum UntaggedElement<U> {
+			Single(U),
+			Many(Vec<U>),
+		}
+
+		let content = UntaggedElement::<T>::deserialize(deserializer)?;
+		match content {
+			UntaggedElement::Single(x) => Ok(Element::Single(vec![x])),
+			UntaggedElement::Many(xs) => Ok(Element::Many(xs)),
 		}
 	}
 }
@@ -47,24 +50,19 @@ impl<K: Eq + Hash, V> MultiMap<K, V> {
 	}
 
 	pub fn insert(&mut self, k: K, v: V) {
-		let to_push;
-		match self.0.get_mut(&k) {
-			Some(e) => {
-				match e {
-					Element::Single(x) => {
-						to_push = Element::Many(vec![x.remove(0), v]);
-					}
-					Element::Many(xs) => {
-						xs.push(v);
-						return;
-					}
-				};
-			}
-			None => {
-				to_push = Element::Single(vec![v]);
-			}
-		};
-		self.0.insert(k, to_push);
+		if let Some(e) = self.0.get_mut(&k) {
+			match e {
+				Element::Single(x) => {
+					let old_v = x.remove(0);
+					*e = Element::Many(vec![old_v, v]);
+				}
+				Element::Many(xs) => {
+					xs.push(v);
+				}
+			};
+		} else {
+			self.0.insert(k, Element::Single(vec![v]));
+		}
 	}
 
 	pub fn iter(&self) -> impl Iterator<Item = (&K, &V)> {
@@ -86,10 +84,8 @@ impl<K: Eq + Hash, V> MultiMap<K, V> {
 
 	pub fn get_vec(&self, k: &K) -> Option<&Vec<V>> {
 		match self.0.get(k) {
-			Some(v) => match v {
-				Element::Single(x) => Some(x),
-				Element::Many(xs) => Some(xs),
-			},
+			Some(Element::Single(x)) => Some(x),
+			Some(Element::Many(xs)) => Some(xs),
 			None => None,
 		}
 	}
