@@ -23,7 +23,7 @@ impl PageEntries {
 		}
 	}
 
-	pub fn iter_entries(&self) -> std::slice::Iter<EntryIdentifier> {
+	pub fn iter_entries(&self) -> std::slice::Iter<'_, EntryIdentifier> {
 		self.entries.iter()
 	}
 

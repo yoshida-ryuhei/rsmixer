@@ -9,7 +9,7 @@ impl Entries {
 	pub fn iter_type<'a>(
 		&'a self,
 		entry_type: EntryType,
-	) -> Box<dyn Iterator<Item = (&EntryIdentifier, &Entry)> + 'a> {
+	) -> Box<dyn Iterator<Item = (&'a EntryIdentifier, &'a Entry)> + 'a> {
 		Box::new(
 			self.0
 				.iter()
@@ -19,7 +19,7 @@ impl Entries {
 	pub fn iter_type_mut<'a>(
 		&'a mut self,
 		entry_type: EntryType,
-	) -> Box<dyn Iterator<Item = (&EntryIdentifier, &mut Entry)> + 'a> {
+	) -> Box<dyn Iterator<Item = (&'a EntryIdentifier, &'a mut Entry)> + 'a> {
 		Box::new(
 			self.0
 				.iter_mut()
